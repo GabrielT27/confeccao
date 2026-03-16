@@ -44,8 +44,8 @@
                                     </span>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{ route('clientes.edit', $pedidos->id) }}" class="text-indigo-600 hover:text-indigo-400 mr-3">Editar</a>
-                                    <form id="delete-form-{{ $pedidos->id }}" action="{{ route('clientes.destroy', $pedidos->id) }}" method="POST" class="inline">
+                                    <a href="{{ route('pedidos.edit', $pedidos->id) }}" class="text-indigo-600 hover:text-indigo-400 mr-3">Editar</a>
+                                    <form id="delete-form-{{ $pedidos->id }}" action="{{ route('pedidos.destroy', $pedidos->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="button" onclick="confirmDelete({{ $pedidos->id }})" class="text-red-600 hover:text-red-400 cursor-pointer">Excluir</button>
