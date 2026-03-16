@@ -31,5 +31,18 @@ Route::middleware('auth')->group(function () {
     
 });
 
+// Rota para listar os pedidos da confecção
+Route::middleware('auth')->group(function () {
+    Route::get('/pedidos', [PedidosController::class, 'index'])->name('pedidos.index');
+    Route::get('/pedidos/create', [PedidosController::class, 'create'])->name('pedidos.create');
+    Route::post('/pedidos', [PedidosController::class, 'store'])->name('pedidos.store');
+    Route::get('/pedidos/{id}/edit', [PedidosController::class, 'edit'])->name('pedidos.edit');
+    Route::put('/pedidos/{id}', [PedidosController::class, 'update'])->name('pedidos.update');
+    Route::delete('/pedidos/{id}', [PedidosController::class, 'destroy'])->name('pedidos.destroy');
+    
+});
+
+
+
 
 require __DIR__.'/auth.php';
