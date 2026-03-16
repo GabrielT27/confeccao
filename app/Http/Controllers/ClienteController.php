@@ -20,7 +20,7 @@ class ClienteController extends Controller
      */
     public function create()
     {
-        //
+        return view('cliente.create');
     }
 
     /**
@@ -28,7 +28,17 @@ class ClienteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14|unique:clientes,cpf',
+            'email' => 'required|email|max:255|unique:clientes,email',
+            'telefone' => 'required|string|max:20',
+            'endereco' => 'required|string',
+        ]);
+
+        \App\Models\Cliente::create($request->only(['nome', 'cpf', 'email', 'telefone', 'endereco']));
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente criado com sucesso!');
     }
 
     /**
@@ -44,7 +54,8 @@ class ClienteController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $cliente = \App\Models\Cliente::findOrFail($id);
+        return view('cliente.edit', compact('cliente'));
     }
 
     /**
@@ -52,7 +63,18 @@ class ClienteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nome' => 'required|string|max:255',
+            'cpf' => 'required|string|max:14|unique:clientes,cpf,' . $id,
+            'email' => 'required|email|max:255|unique:clientes,email,' . $id,
+            'telefone' => 'required|string|max:20',
+            'endereco' => 'required|string',
+        ]);
+
+        $cliente = \App\Models\Cliente::findOrFail($id);
+        $cliente->update($request->only(['nome', 'cpf', 'email', 'telefone', 'endereco']));
+
+        return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
     }
 
     /**
@@ -60,7 +82,9 @@ class ClienteController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $cliente = \App\Models\Cliente::findOrFail($id);
+        $cliente->delete();
+        return redirect()->route('clientes.index')->with('success', 'Cliente deletado com sucesso!');
     }
     
 }
