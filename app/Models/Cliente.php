@@ -5,9 +5,16 @@ use Illuminate\Database\Eloquent\Factories\HasFactory; // Importe isso
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Models\Pedidos;
+
 class Cliente extends Model
 {
-    // Isso permite que o Laravel salve esses campos de uma vez só
-    use HasFactory; 
+    use HasFactory;
+
     protected $fillable = ['nome', 'cpf', 'email', 'telefone', 'endereco'];
+
+    public function pedidos()
+    {
+        return $this->hasMany(Pedidos::class, 'cliente_id');
+    }
 }
