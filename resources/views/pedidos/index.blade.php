@@ -48,7 +48,6 @@
                                     <form id="delete-form-{{ $pedidos->id }}" action="{{ route('pedidos.destroy', $pedidos->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="button" onclick="confirmDelete({{ $pedidos->id }})" class="text-red-600 hover:text-red-400 cursor-pointer">Excluir</button>
                                     </form>
                                 </td>
                             </tr>
