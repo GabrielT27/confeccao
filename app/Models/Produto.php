@@ -17,4 +17,8 @@ class Produto extends Model
     {
         return $this->hasMany(Insumo::class);
     }
+        public function movimentacoes()
+    {
+        return $this->hasMany(MovimentacaoEstoque::class);
+    }
 }
