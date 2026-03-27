@@ -16,6 +16,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
+use Filament\Support\RawJs;
 use Filament\Tables\Columns\TextColumn;
 
 class ClienteResource extends Resource
@@ -41,10 +42,18 @@ class ClienteResource extends Resource
                     ->maxLength(100),
                 TextInput::make('telefone')
                     ->label('Telefone')
+                    ->mask('(99) 9999-9999')
                     ->maxLength(100),
-                TextInput::make('documento')
-                    ->label('Documento')
-                    ->maxLength(100),
+                    TextInput::make('documento')
+                    ->label('CPF ou CNPJ')
+                    ->mask(RawJs::make(<<<'JS'
+                        {
+                            mask: [
+                                { mask: '000.000.000-00' },
+                                { mask: '00.000.000/0000-00' }
+                            ]
+                        }
+                    JS)),
             ]);
     }
 

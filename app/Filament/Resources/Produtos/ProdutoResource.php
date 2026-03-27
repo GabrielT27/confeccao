@@ -40,8 +40,6 @@ class ProdutoResource extends Resource
                     ->required()
                     ->default(0)
                     ->label('Estoque'),
-                    
-                // NÃO inclua preco_unitario aqui!
             ]);
     }
 
