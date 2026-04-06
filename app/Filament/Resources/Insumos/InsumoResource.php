@@ -13,6 +13,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Insumo;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -21,6 +22,10 @@ use Filament\Tables\Table;
 class InsumoResource extends Resource
 {
     protected static ?string $model = Insumo::class;
+
+    protected static string|UnitEnum|null $navigationGroup = 'Estoque';
+
+    protected static ?int $navigationSort = 1;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

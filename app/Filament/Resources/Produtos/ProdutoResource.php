@@ -6,12 +6,22 @@ use Filament\Forms\Components\TextInput;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables\Table;
+use BackedEnum;
+use UnitEnum;
 use Filament\Tables\Columns\TextColumn;
 use App\Models\Produto;
+use Filament\Support\Icons\Heroicon;
 
 class ProdutoResource extends Resource
 {
     protected static ?string $model = Produto::class;
+
+
+    protected static string|UnitEnum|null $navigationGroup = 'Estoque';
+
+    protected static ?int $navigationSort = 1;
+
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
     
 

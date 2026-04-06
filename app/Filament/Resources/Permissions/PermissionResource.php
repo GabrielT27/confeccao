@@ -11,6 +11,7 @@ use App\Filament\Resources\Permissions\Schemas\PermissionInfolist;
 use App\Filament\Resources\Permissions\Tables\PermissionsTable;
 use Spatie\Permission\Models\Permission;
 use BackedEnum;
+use UnitEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
@@ -24,9 +25,13 @@ class PermissionResource extends Resource
 {
     protected static ?string $model = Permission::class;
 
+    protected static string|UnitEnum|null $navigationGroup = 'Admnistração';
+
+    protected static ?int $navigationSort = 1;
+
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
-    protected static ?string $recordTitleAttribute = 'Permission';
+    protected static ?string $recordTitleAttribute = 'Painel Permissões';
 
     public static function form(Schema $schema): Schema
     {
